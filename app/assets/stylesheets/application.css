@@ -1,0 +1,89 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ /**{
+   padding: 0;
+   margin: 0;
+ }*/
+ .opponent_cards > div {
+  /*border: 2px solid rgb(233,171,88);
+  border-radius: 5px;
+  background-color: rgba(233,171,88,.5);
+  color: #d9480f;*/
+}.opponent_cards {
+  display: grid;
+  grid-template-columns: repeat(6, 100px);
+  grid-gap: 10px;
+  grid-template-rows: 130px 130px;
+  margin: 10px auto 10px auto;
+}
+
+ .player_cards > div {
+  /*border: 2px solid rgb(233,171,88);
+  border-radius: 5px;
+  background-color: rgba(233,171,88,.5);
+  color: #d9480f;*/
+}.player_cards {
+  display: grid;
+  grid-template-columns: repeat(6, 100px);
+  grid-gap: 10px;
+  grid-template-rows: 130px 130px;
+  margin: 10px auto 10px auto;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.opponent_cards .dealt {
+  grid-row: 1
+}
+
+.player_cards .dealt {
+  grid-row: 2
+}
+
+.opponent_cards .played {
+  grid-row: 2
+}
+
+.player_cards .played {
+  grid-row: 1
+}
+ /*.one {
+   grid-column: 1 / 3;
+   grid-row: 1;
+ }
+ .two {
+   grid-column: 2 / 4;
+   grid-row: 1 / 3;
+ }
+ .three {
+   grid-column: 1;
+   grid-row: 2 / 5;
+ }
+ .four {
+   grid-column: 3;
+   grid-row: 3;
+ }
+ .five {
+   grid-column: 2;
+   grid-row: 4;
+ }
+ .six {
+   grid-column: 3;
+   grid-row: 4;
+ }*/
