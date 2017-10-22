@@ -26,8 +26,22 @@
   display: grid;
   grid-template-columns: repeat(6, 100px);
   grid-gap: 10px;
-  grid-template-rows: 130px 130px;
+  grid-template-rows: 80px 80px;
   margin: 10px auto 10px auto;
+}
+
+.board > div {
+  background-color: black;
+  border-radius: 50%;
+}
+.board .peg {
+  background-color: red;
+}
+.board {
+  display: grid;
+  grid-template-columns: repeat(61, 8px);
+  grid-template-rows: 8px 8px 8px 8px;
+  grid-gap: 8px;
 }
 
  .player_cards > div {
@@ -39,7 +53,7 @@
   display: grid;
   grid-template-columns: repeat(6, 100px);
   grid-gap: 10px;
-  grid-template-rows: 130px 130px;
+  grid-template-rows: 80px 80px;
   margin: 10px auto 10px auto;
 }
 

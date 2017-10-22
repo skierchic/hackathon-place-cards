@@ -14,31 +14,38 @@ class CardContainer extends React.Component {
       played: false
     };
     this.handleClick = this.handleClick.bind(this)
-    this.handleSingleClick = this.handleSingleClick.bind(this)
+    this.changeCardPlayState = this.changeCardPlayState.bind(this)
   }
   handleClick() {
     let newState = !this.state.played
     this.setState({played: newState})
   }
-  handleSingleClick(event) {
-    debugger
+  changeCardPlayState(id) {
+    let new_player_cards = this.state.player_cards.concat()
+    new_player_cards[id - 1].played = !this.state.player_cards[id-1].played
+    this.setState({ player_cards: new_player_cards })
   }
   render() {
-    console.log(this.state.played)
     // let image = 'http://sweetclipart.com/multisite/sweetclipart/files/ace_of_hearts.png'
     let image = 'http://res.freestockphotos.biz/pictures/15/15524-illustration-of-an-ace-of-diamonds-playing-card-pv.png'
     let className = this.state.played? 'played' : 'dealt'
     let playerClassName
     let player_cards = this.state.player_cards.map(card => {
       playerClassName = card.played? 'played' : 'dealt'
+      let handleSingleClick = () => { this.changeCardPlayState(card.id)}
       return(
         <CardTile image={image}
                   key={card.id}
-                  className={className}
-                  onClick={this.handleClick}
+                  className={playerClassName}
+                  onClick={handleSingleClick}
                 />
       )
     })
+    let track = []
+    for(let hole = 0; hole < 122; hole ++) {
+      track.push(<div key={hole}></div>)
+    }
+    track[0] = <div key='0' className="peg"></div>
     return(
       <div className='wrapper'>
 
@@ -53,6 +60,10 @@ class CardContainer extends React.Component {
 
         </div>
         <hr/>
+        <div className='board'>
+          {track}
+          {track}
+        </div>
         <div className='player_cards'>
           {player_cards}
         </div>
