@@ -5,12 +5,12 @@ class CardContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      player_cards: [{id: 1, played: false},
-                      {id: 2, played: false},
-                      {id: 3, played: false},
-                      {id: 4, played: false},
-                      {id: 5, played: false},
-                      {id: 6, played: false}],
+      playerCards: [{id: 1, rank: '2', suit: 'D', played: false},
+                      {id: 2, rank: '5', suit: 'H', played: false},
+                      {id: 3, rank: '8', suit: 'C', played: false},
+                      {id: 4, rank: 'J', suit: 'C', played: false},
+                      {id: 5, rank: 'A', suit: 'S', played: false},
+                      {id: 6, rank: 'K', suit: 'D', played: false}],
       played: false
     };
     this.handleClick = this.handleClick.bind(this)
@@ -21,20 +21,23 @@ class CardContainer extends React.Component {
     this.setState({played: newState})
   }
   changeCardPlayState(id) {
-    let new_player_cards = this.state.player_cards.concat()
-    new_player_cards[id - 1].played = !this.state.player_cards[id-1].played
-    this.setState({ player_cards: new_player_cards })
+    let newPlayerCards = this.state.playerCards.concat()
+    newPlayerCards[id - 1].played = !this.state.playerCards[id-1].played
+    this.setState({ playerCards: newPlayerCards })
   }
   render() {
     // let image = 'http://sweetclipart.com/multisite/sweetclipart/files/ace_of_hearts.png'
-    let image = 'http://res.freestockphotos.biz/pictures/15/15524-illustration-of-an-ace-of-diamonds-playing-card-pv.png'
+    // let image = 'http://res.freestockphotos.biz/pictures/15/15524-illustration-of-an-ace-of-diamonds-playing-card-pv.png'
+    let opponentImage = require(`../../../assets/images/Yellow_back.jpg`)
     let className = this.state.played? 'played' : 'dealt'
+    let playerImage
     let playerClassName
-    let player_cards = this.state.player_cards.map(card => {
+    let playerCards = this.state.playerCards.map(card => {
+      playerImage = require(`../../../assets/images/${card.rank}${card.suit}.jpg`)
       playerClassName = card.played? 'played' : 'dealt'
       let handleSingleClick = () => { this.changeCardPlayState(card.id)}
       return(
-        <CardTile image={image}
+        <CardTile image={playerImage}
                   key={card.id}
                   className={playerClassName}
                   onClick={handleSingleClick}
@@ -50,12 +53,12 @@ class CardContainer extends React.Component {
       <div className='wrapper'>
 
         <div className='opponent_cards'>
-          <CardTile image={image} name='One' className={className} onClick={this.handleClick}/>
-          <CardTile image={image} name='Two' className={className} onClick={this.handleClick}/>
-          <CardTile image={image} name='Three' className={className} onClick={this.handleClick}/>
-          <CardTile image={image} name='Four' className={className} onClick={this.handleClick}/>
-          <CardTile image={image} name='Five' className={className} onClick={this.handleClick}/>
-          <CardTile image={image} name='Six' className={className} onClick={this.handleClick}/>
+          <CardTile image={opponentImage} name='One' className={className} onClick={this.handleClick}/>
+          <CardTile image={opponentImage} name='Two' className={className} onClick={this.handleClick}/>
+          <CardTile image={opponentImage} name='Three' className={className} onClick={this.handleClick}/>
+          <CardTile image={opponentImage} name='Four' className={className} onClick={this.handleClick}/>
+          <CardTile image={opponentImage} name='Five' className={className} onClick={this.handleClick}/>
+          <CardTile image={opponentImage} name='Six' className={className} onClick={this.handleClick}/>
 
 
         </div>
@@ -64,8 +67,9 @@ class CardContainer extends React.Component {
           {track}
           {track}
         </div>
+        <hr/>
         <div className='player_cards'>
-          {player_cards}
+          {playerCards}
         </div>
 
       </div>
@@ -74,10 +78,3 @@ class CardContainer extends React.Component {
 }
 
 export default CardContainer
-
-{/* <CardTile image={image} name='My One' className={className} onClick={this.handleClick}/>
-<CardTile image={image} name='My Two' className={className} onClick={this.handleClick}/>
-<CardTile image={image} name='My Three' className={className} onClick={this.handleClick}/>
-<CardTile image={image} name='My Four' className={className} onClick={this.handleClick}/>
-<CardTile image={image} name='My Five' className={className} onClick={this.handleClick}/>
-<CardTile image={image} name='My Six' className={className} onClick={this.handleClick}/> */}
